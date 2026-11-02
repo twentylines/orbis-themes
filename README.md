@@ -4,7 +4,7 @@ This repository holds the public catalogue and authoring reference for full Orbi
 
 The version 1 document and catalogue contracts and their validators exist in Orbis. The full theme renderer, package installation and update lifecycle are not available yet. A catalogue entry does not make a theme installable or active.
 
-Start with the [authoring guide](docs/README.md). The machine-readable [theme document schema](schemas/theme-framework-v1.json) and [catalogue schema](schemas/theme-framework-catalogue-v1.json) describe structural constraints; additional semantic validation is required.
+Start with the [authoring guide](docs/README.md) and the [copyable authoring prompt](docs/authoring-prompt.md). The machine-readable [theme document schema](schemas/theme-framework-v1.json) and [catalogue schema](schemas/theme-framework-catalogue-v1.json) describe structural constraints; additional semantic validation is required.
 
 ## Quick start
 

@@ -6,6 +6,7 @@ The document and catalogue validators are implemented. Rendering, package instal
 
 ## Reference
 
+- [Copyable authoring prompt](authoring-prompt.md)
 - [Styling and tokens](styling.md)
 - [Layouts and responsive behavior](layouts.md)
 - [Components and actions](components.md)
