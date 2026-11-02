@@ -1,0 +1,8 @@
+/.orbis-validator/
+/.orbis-tests.*/
+/.cache/
+/.tmp/
+.DS_Store
+.env
+.env.*
+*.env

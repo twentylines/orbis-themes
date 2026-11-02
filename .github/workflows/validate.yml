@@ -1,0 +1,41 @@
+name: Validate catalogue
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  catalogue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - uses: actions/checkout@v6
+        with:
+          repository: twentylines/orbis
+          ref: 688abbb7aec8ae23edc4bbc3789f10cdaba9de43
+          path: .orbis-validator
+          persist-credentials: false
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.3.0'
+
+      - name: Build the pinned validator
+        working-directory: .orbis-validator
+        run: |
+          bun install --frozen-lockfile --ignore-scripts
+          bun run --cwd packages/common build
+
+      - name: Validate catalogue and published schemas
+        run: |
+          bun scripts/validate.mjs catalogue catalogue.json .orbis-validator
+          cmp schemas/theme-framework-v1.json .orbis-validator/packages/common/json-schemas/theme-framework-v1.json
+          cmp schemas/theme-framework-catalogue-v1.json .orbis-validator/packages/common/json-schemas/theme-framework-catalogue-v1.json
