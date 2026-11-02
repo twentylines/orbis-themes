@@ -17,12 +17,13 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: actions/checkout@v6
-        with:
-          repository: twentylines/orbis
-          ref: 688abbb7aec8ae23edc4bbc3789f10cdaba9de43
-          path: .orbis-validator
-          persist-credentials: false
+      - name: Fetch the pinned public validator
+        run: |
+          git init .orbis-validator
+          git -C .orbis-validator remote add origin https://github.com/twentylines/orbis.git
+          git -C .orbis-validator -c submodule.recurse=false fetch --depth=1 --no-tags origin 688abbb7aec8ae23edc4bbc3789f10cdaba9de43
+          git -C .orbis-validator -c submodule.recurse=false checkout --detach FETCH_HEAD
+          test "$(git -C .orbis-validator rev-parse HEAD)" = 688abbb7aec8ae23edc4bbc3789f10cdaba9de43
 
       - uses: oven-sh/setup-bun@v2
         with:
